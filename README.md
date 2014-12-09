@@ -1,0 +1,4 @@
+MyNotes
+=======
+
+AngularJS training app
