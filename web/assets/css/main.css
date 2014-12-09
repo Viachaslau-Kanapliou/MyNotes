@@ -1,0 +1,47 @@
+html {
+    background: url("/assets/img/bg.jpg") no-repeat #000000;
+}
+
+.red-pin {
+    width: 75px;
+    height: 70px;
+    background: transparent url("/assets/img/spritesheet.png") no-repeat -35px 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -70px;
+
+}
+
+.right {
+    right: 0;
+}
+
+.top {
+    top: 0;
+}
+.faded{
+    -webkit-transition: opacity 150ms;
+    transition: opacity 150ms;
+    opacity: 0.3;
+}
+.faded:hover{
+    opacity: 1;
+}
+
+/*Low resolution*/
+@media (max-width: 768px) {
+    html{
+        background: #3E1E0F none;
+    }
+}
+
+/*HD resolution*/
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (min-resolution: 1.5dppx) {
+    .red-pin{
+        background: transparent url("/assets/img/hd/pushpin.png") no-repeat;
+    }
+    .items .delete{
+        background: transparent url("/assets/img/hd/delete-icon.png") no-repeat;;
+    }
+}

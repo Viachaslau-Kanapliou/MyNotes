@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+    <title>Notes - Slava</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Fjord+One' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two"/>
+
+    <link rel="stylesheet" href="/assets/css/toast.css"/>
+    <link rel="stylesheet" href="/assets/css/notes.css"/>
+    <link rel="stylesheet" href="/assets/css/main.css"/>
+</head>
+<body ng-app="notesModule">
+<div class="container" ng-controller="NotesCtrl">
+
+    <!-- Notes block-->
+    <div data-color="{{notes.color}}" class="note {{notes.color}}">
+        <div class="red-pin"></div>
+        <span class="pin sprite"></span>
+        <input class="title" name="title" type="text" placeholder="Title..."
+               ng-model="notes.title"  ng-blur="setTitle(notes.title)"/>
+
+        <!-- Items block-->
+        <ul class="notes items">
+            <li data-id="{{note.id}}" ng-repeat="note in notes.items">
+                <div class="align-center">
+                    <input type="checkbox" ng-checked="note.isDone" ng-model="note.isDone" ng-change="setDone(note)"/>
+                </div>
+                <div class="stretch-wrapper">
+                    <input type="text" placeholder="Add item..." ng-model="note.label" ng-blur="updateNote(note)"
+                           ng-focus="setEditedNote(note)" ng-class="{'done':note.isDone}"/>
+                </div>
+                <div class="align-center right top">
+                    <a href="#" class="delete sprite faded FIR" title="Delete item"
+                       ng-click="deleteNote(note)">Delete item</a>
+                </div>
+            </li>
+        </ul>
+
+        <!-- Controls block-->
+        <button id="add-item" class="add-item" title="Add item" ng-click="addNote()">+</button>
+
+        <!-- Colors block-->
+        <ul class="color-chooser">
+            <li data-color="yellow" class="yellow faded" title="Yellow" ng-click="setColor('yellow')"></li>
+            <li data-color="green" class="green faded" title="Green" ng-click="setColor('green')"></li>
+            <li data-color="blue" class="blue faded" title="Blue" ng-click="setColor('blue')"></li>
+            <li data-color="red" class="red faded" title="Red" ng-click="setColor('red')"></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Toast block-->
+<div ng-controller="ToastCtrl" class="toast" ng-class="{'active':isActive, 'deactivated':!isActive, 'error':isError}">{{lastMessage}}</div>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+<script type="text/javascript" src="assets/js/lib/angular.min.js"></script>
+<script type="text/javascript" src="assets/js/notes.js"></script>
+<script type="text/javascript" src="assets/js/toast.js"></script>
+</body>
+</html>
