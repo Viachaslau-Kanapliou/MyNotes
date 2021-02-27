@@ -1,6 +1,6 @@
 {
   "name": "notes-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple notes application",
   "main": "server.js",
   "scripts": {
